@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileGuard | Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .analysis-container {
+            padding: 120px 8% 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: var(--glass);
+        }
+
+        #previewImage {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            display: none;
+            margin-top: 15px;
+        }
+
+        .radar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            position: relative;
+            margin: 20px auto;
+            display: none;
+            overflow: hidden;
+        }
+
+        .radar::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, var(--primary) 0deg, transparent 90deg);
+            transform-origin: top left;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .result-panel {
+            display: none;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .result-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .meter {
+            height: 12px;
+            background: var(--glass-border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .meter-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="dashboard.html" class="logo">
+            <i class="fas fa-arrow-left" style="font-size: 18px; margin-right: 10px;"></i>
+            <span>Analysis</span>
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="signup.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Sign Up</a>
+            <a href="#" class="btn-outline" onclick="logout(event)">Logout</a>
+        </div>
+    </nav>
+
+    <main class="analysis-container">
+        <div class="section-header">
+            <h2>Deep Identity Scan</h2>
+            <p>Upload profile metadata and visuals for AI evaluation.</p>
+        </div>
+
+        <div class="glass-card" style="padding: 40px;">
+            <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-cloud-upload-alt"
+                    style="font-size: 48px; color: var(--primary); margin-bottom: 15px;"></i>
+                <p>Drag profile picture here or click to upload</p>
+                <input type="file" id="fileInput" hidden accept="image/*">
+                <img id="previewImage" alt="Profile Preview">
+            </div>
+
+            <div class="form-grid">
+                <div class="input-group" style="grid-column: span 2;">
+                    <label>Profile Username</label>
+                    <div style="position: relative;">
+                        <input type="text" id="targetUsername" placeholder="@username_to_check"
+                            style="padding-left: 45px;">
+                        <i class="fas fa-at"
+                            style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Platform</label>
+                    <select class="input-group input" style="width: 100%; -webkit-appearance: none; appearance: none;">
+                        <option>Instagram</option>
+                        <option>X (Twitter)</option>
+                        <option>Facebook</option>
+                        <option>LinkedIn</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Account Age (Months)</label>
+                    <input type="number" id="accAge" placeholder="e.g. 14">
+                </div>
+                <div class="input-group">
+                    <label>Followers</label>
+                    <input type="number" id="followers" placeholder="e.g. 1200">
+                </div>
+                <div class="input-group">
+                    <label>Following</label>
+                    <input type="number" id="following" placeholder="e.g. 300">
+                </div>
+            </div>
+
+            <button class="btn-primary" id="analyzeBtn" style="width: 100%; justify-content: center;"
+                onclick="runAnalysis()">
+                Launch AI Analysis Engine <i class="fas fa-microchip"></i>
+            </button>
+
+            <div class="radar" id="radar"></div>
+
+            <div class="glass-card result-panel" id="resultPanel">
+                <h3 id="resultTitle">Analysis Complete</h3>
+                <div class="meter">
+                    <div class="meter-bar" id="meterBar"></div>
+                </div>
+                <p id="resultText" style="font-size: 18px; font-weight: 600;"></p>
+                <p id="confidenceText" style="color: var(--text-muted); margin-top: 10px;"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot UI -->
+    <div class="chatbot-container">
+        <button class="chat-trigger" id="chatTrigger" title="Security Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="avatar"><i class="fas fa-shield-halved"></i></div>
+                    <div class="status">
+                        <span>PG Analyzer</span>
+                        <span><i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> Online</span>
+                    </div>
+                </div>
+                <button id="closeChat"
+                    style="background:none; border:none; color:white; cursor:pointer; font-size: 18px;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Standing by for profile diagnostics. 🤖<br><br>I can explain our **detection
+                    criteria**, the **accuracy of our neural model**, or our **privacy policy**. How can I help with
+                    your scan?</div>
+            </div>
+            <div id="suggestionArea" class="chat-suggestions">
+                <div class="suggestion-chip" onclick="handleSuggestion('How do you detect fake accounts?')">How do you
+                    detect fake accounts?</div>
+                <div class="suggestion-chip" onclick="handleSuggestion('Scan speed')">Scan speed</div>
+                <div class="suggestion-chip" onclick="handleSuggestion('Privacy policy')">Privacy policy</div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Ask about analysis results...">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

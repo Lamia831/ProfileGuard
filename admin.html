@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileGuard | Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .admin-container {
+            padding: 120px 8% 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 20px;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        td {
+            padding: 20px;
+            background: var(--glass);
+        }
+
+        tr td:first-child {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        tr td:last-child {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        tr td {
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .status-pill {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-fake {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .status-suspicious {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .status-real {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .action-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            background: var(--glass-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="dashboard.html" class="logo">
+            <i class="fas fa-hammer" style="margin-right: 10px;"></i>
+            <span>Moderation Panel</span>
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="signup.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Sign Up</a>
+            <a href="#" class="btn-outline" onclick="logout(event)">Logout</a>
+        </div>
+    </nav>
+
+    <main class="admin-container">
+        <div class="section-header">
+            <h2>Pending Reports</h2>
+            <p>Review flagged accounts and take corrective action.</p>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Target Profile</th>
+                    <th>Report Reason</th>
+                    <th>AI Score</th>
+                    <th>System Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: 600;">@bot_hunter_99</td>
+                    <td>Repetitive Spamming</td>
+                    <td>94%</td>
+                    <td><span class="status-pill status-fake">Flagged Fake</span></td>
+                    <td>
+                        <button class="action-btn"
+                            onclick="this.closest('tr').remove(); alert('Account Banned');">Ban</button>
+                        <button class="action-btn" onclick="alert('Dismissed');">Dismiss</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">@crypto_king_x</td>
+                    <td>Scam Link in Bio</td>
+                    <td>82%</td>
+                    <td><span class="status-pill status-suspicious">Suspicious</span></td>
+                    <td>
+                        <button class="action-btn">Warn</button>
+                        <button class="action-btn">Ban</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: 600;">@sarah_dev_23</td>
+                    <td>Mass DM Activity</td>
+                    <td>12%</td>
+                    <td><span class="status-pill status-real">Authentic</span></td>
+                    <td>
+                        <button class="action-btn">Dismiss</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Chatbot UI -->
+    <div class="chatbot-container">
+        <button class="chat-trigger" id="chatTrigger">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="glass-card chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="avatar"><i class="fas fa-robot"></i></div>
+                    <div class="status">
+                        <span>PG Admin Bot</span>
+                        <span><i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> Online</span>
+                    </div>
+                </div>
+                <button id="closeChat" style="background:none; border:none; color:white; cursor:pointer;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Admin mode active. I can help you filter reports or lookup user history.</div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Command system...">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

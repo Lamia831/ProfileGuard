@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileGuard | AI-Powered Identity Protection</title>
+    <meta name="description"
+        content="Protect your social presence with ProfileGuard. The world's most advanced AI-powered fake profile detection system.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="home.html" class="logo">
+            <i class="fas fa-shield-halved"></i>
+            <span>ProfileGuard</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">Technology</a></li>
+            <li><a href="#stats">Impact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="nav-auth">
+                <a href="index.html" class="btn-outline">Login</a>
+                <a href="signup.html" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content reveal-left active">
+                <span class="badge" style="animation: glow 3s infinite;">New: AI Model v2.4 Released</span>
+                <h1>Stay Real In A <span class="gradient-text">Digital World</span></h1>
+                <p>Advanced AI-driven analysis to detect, flag, and protect you from deceptive social media profiles and
+                    automated bots.</p>
+                <div class="hero-btns">
+                    <a href="signup.html" class="btn-primary">Start Protecting Now <i
+                            class="fas fa-arrow-right"></i></a>
+                    <a href="#features" class="btn-outline">How it works</a>
+                </div>
+            </div>
+            <div class="hero-image reveal-right active">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="ProfileGuard Protection">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="reveal" style="padding: 100px 8%; text-align: center;">
+            <div class="glass-card about-card">
+                <div style="flex: 1;">
+                    <h2 class="gradient-text">Advanced AI Guard</h2>
+                    <p style="color: var(--text-muted); margin: 20px 0;">Our system uses a combination of neural
+                        networks and behavioral analysis to verify identities across the digital landscape.</p>
+                    <a href="signup.html" class="btn-primary">Learn More</a>
+                </div>
+                <div style="flex: 1;">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="ProfileGuard in Action"
+                        style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features reveal">
+            <div class="section-header">
+                <h2>Defense Layers</h2>
+                <p>Multiple layers of security to ensure your social interactions are authentic.</p>
+            </div>
+            <div class="grid">
+                <div class="glass-card feature-card reveal" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80"
+                        alt="Neural Engine" class="feature-img">
+                    <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Neural Engine</h3>
+                    <p>Proprietary neural networks trained on millions of authentic and deceptive profile patterns.</p>
+                </div>
+                <div class="glass-card feature-card reveal" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+                        alt="Real-time Radar" class="feature-img">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Real-time Radar</h3>
+                    <p>Instant notifications the moment a suspicious interaction is detected on your connected accounts.
+                    </p>
+                </div>
+                <div class="glass-card feature-card reveal" style="transition-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1507089947368-19c1da977535?auto=format&fit=crop&w=600&q=80"
+                        alt="Identity DNA" class="feature-img">
+                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3>Identity DNA</h3>
+                    <p>Verifies user consistency across platforms using advanced behavioral biometric analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="stats reveal">
+            <div class="stats-grid">
+                <div class="stat-item reveal" style="transition-delay: 0.1s;">
+                    <h3 data-target="2M">2M+</h3>
+                    <p>Profiles Scanned</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.2s;">
+                    <h3 data-target="99.8">99.8%</h3>
+                    <p>Detection Accuracy</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.3s;">
+                    <h3 data-target="150K">150K</h3>
+                    <p>Scams Prevented</p>
+                </div>
+                <div class="stat-item reveal" style="transition-delay: 0.4s;">
+                    <h3>24/7</h3>
+                    <p>Active Protection</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot UI -->
+    <div class="chatbot-container">
+        <button class="chat-trigger" id="chatTrigger" title="Security Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="avatar"><i class="fas fa-shield-halved"></i></div>
+                    <div class="status">
+                        <span>PG Security Agent</span>
+                        <span><i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> Online</span>
+                    </div>
+                </div>
+                <button id="closeChat"
+                    style="background:none; border:none; color:white; cursor:pointer; font-size: 18px;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Welcome, Guardian! I am your **Security Assistant**. 🛡️<br><br>I can help you:
+                    <ul>
+                        <li>**Scan Profiles**: Verify if an account is real or a bot.</li>
+                        <li>**Learn Tech**: Understand our v2.4 Neural Model.</li>
+                        <li>**Security Tips**: Get advice on staying safe.</li>
+                    </ul>
+                    What would you like to know first?
+                </div>
+            </div>
+            <div id="suggestionArea" class="chat-suggestions">
+                <div class="suggestion-chip" onclick="handleSuggestion('What can you do?')">What can you do?</div>
+                <div class="suggestion-chip" onclick="handleSuggestion('How to scan?')">How to scan?</div>
+                <div class="suggestion-chip" onclick="handleSuggestion('Is it free?')">Is it free?</div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Inquire about safety protocols...">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust & Safety Section -->
+    <section class="trust-section reveal">
+        <div class="section-header">
+            <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">100% Secure Platform</span>
+            <h2>Why ProfileGuard is Safe</h2>
+            <p>Your security and privacy are our top priorities.</p>
+        </div>
+        <div class="trust-grid">
+            <div class="glass-card trust-card">
+                <i class="fas fa-user-secret"></i>
+                <h3>End-to-End Privacy</h3>
+                <p>We do not store your personal login credentials. All scans are performed locally through secure API
+                    tunnels.</p>
+            </div>
+            <div class="glass-card trust-card">
+                <i class="fas fa-shield-check"></i>
+                <h3>Data Encryption</h3>
+                <p>Every analysis request is encrypted using industry-standard SSL/TLS protocols to ensure your data
+                    stays private.</p>
+            </div>
+            <div class="glass-card trust-card">
+                <i class="fas fa-microchip"></i>
+                <h3>AI-Driven Safety</h3>
+                <p>Our proprietary neural model identifies 98% of malicious profiles before they can harm your digital
+                    reputation.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="#" class="logo">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>ProfileGuard</span>
+                </a>
+                <p>Securing the digital frontier since 2024.</p>
+                <div class="safe-badge">
+                    <i class="fas fa-check-circle"></i> Verified Safe Site
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Security Audit</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Safety</h4>
+                <ul>
+                    <li><a href="#">Trust Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Trusted By</h4>
+                <div class="social-icons">
+                    <i class="fab fa-google" title="Google Security Partner"></i>
+                    <i class="fab fa-apple" title="App Store Verified"></i>
+                    <i class="fab fa-microsoft" title="Microsoft Secure"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ProfileGuard Inc. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--primary);"></i> for Global Digital Safety</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
