@@ -1,0 +1,8 @@
+{
+  "name": "profileguard",
+  "version": "1.0.0",
+  "description": "AI-Powered Social Media Safety Platform",
+  "scripts": {
+    "start": "start http://localhost:5000/home.html && node backend/server.js"
+  }
+}

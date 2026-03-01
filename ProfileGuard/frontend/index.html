@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileGuard | Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="home.html" class="logo">
+            <i class="fas fa-shield-halved"></i>
+            <span>ProfileGuard</span>
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="auth-container">
+        <div class="glass-card auth-card reveal active">
+            <h2>Welcome Back</h2>
+            <p>Access your secure dashboard</p>
+
+            <form id="loginForm" onsubmit="return login(event)">
+                <div class="input-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" placeholder="Enter your email or full name" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn-primary"
+                    style="width: 100%; justify-content: center; margin-top: 20px;">
+                    Login to Dashboard
+                </button>
+            </form>
+
+            <p style="margin-top: 24px; font-size: 14px;">
+                Secure access for authorized users only.
+                <a href="signup.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Sign
+                    Up</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

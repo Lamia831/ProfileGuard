@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfileGuard | Report Portal</title>
+
+    <!-- External Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .report-portal-container {
+            padding: 120px 8% 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .report-banner {
+            margin-bottom: 30px;
+            height: 200px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .report-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) contrast(1.1);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.4), transparent);
+        }
+
+        .banner-overlay span {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .success-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            border-radius: 24px;
+            z-index: 10;
+            animation: fadeIn 0.4s ease;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-overlay i {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+        }
+
+        .success-overlay h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .success-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        select {
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 16px;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            width: 100%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 16px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: var(--transition);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--glass-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="dashboard.html" class="logo">
+            <i class="fas fa-arrow-left" style="font-size: 18px; margin-right: 10px;"></i>
+            <span>Report Center</span>
+        </a>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="signup.html" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">Sign Up</a>
+            <a href="#" class="btn-outline" onclick="logout(event)">Logout</a>
+        </div>
+    </nav>
+
+    <main class="report-portal-container">
+        <div class="report-banner reveal active">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                alt="Report Banner">
+            <div class="banner-overlay">
+                <span>Reporting Portal</span>
+            </div>
+        </div>
+
+        <div class="glass-card reveal active" style="position: relative; padding: 50px; text-align: center;">
+            <i class="fa fa-bullhorn"
+                style="font-size: 4rem; color: #f43f5e; margin-bottom: 25px; filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.3));"></i>
+            <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Report Profile</h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px;">Provide evidence of deceptive behavior to alert
+                our safety systems.</p>
+
+            <form id="reportForm" style="text-align: left;">
+                <div class="input-group">
+                    <label>Username / Profile Link</label>
+                    <input type="text" id="report-user" placeholder="@username_to_report" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Primary Reason</label>
+                    <div style="position: relative;">
+                        <select id="report-reason">
+                            <option>Fake Photo / Identity Theft</option>
+                            <option>Spam / Bot Activity</option>
+                            <option>Scamming / Phishing</option>
+                            <option>Inappropriate Content</option>
+                            <option>Other Suspicious Behavior</option>
+                        </select>
+                        <i class="fas fa-chevron-down"
+                            style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: 0.5;"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Evidence Detail</label>
+                    <textarea id="report-evidence" placeholder="Describe the behavior you observed..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary"
+                    style="width: 100%; justify-content: center; margin-top: 20px; height: 55px; font-size: 1.1rem; background: linear-gradient(135deg, #f43f5e, #fb7185);">
+                    Submit Official Report <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
+                </button>
+            </form>
+
+            <div id="successOverlay" class="success-overlay">
+                <i class="fa fa-check-circle"></i>
+                <h2>Analysis Scheduled!</h2>
+                <p>Your report has been securely transmitted. Our neural engine will review this profile within 24
+                    hours.</p>
+                <button class="btn-outline" style="background: white; color: var(--primary); border: none;"
+                    onclick="location.reload()">
+                    File New Report
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chatbot UI -->
+    <div class="chatbot-container">
+        <button class="chat-trigger" id="chatTrigger">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="avatar"><i class="fas fa-shield-halved"></i></div>
+                    <div class="status">
+                        <span>PG Security</span>
+                        <span><i class="fas fa-circle" style="color: #10b981; font-size: 8px;"></i> Online</span>
+                    </div>
+                </div>
+                <button id="closeChat" style="background:none; border:none; color:white; cursor:pointer;"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="msg bot">Standing by for report details. Your data is encrypted and secure.</div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Ask about reporting guidelines...">
+                    <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('reportForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const username = document.getElementById('report-user').value;
+
+            if (!username) {
+                alert("Please identify the target profile.");
+                return;
+            }
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Transmitting...';
+            btn.disabled = true;
+
+            // Simulate server delay
+            setTimeout(() => {
+                document.getElementById('successOverlay').style.display = 'flex';
+                console.log("Report submitted for:", username);
+            }, 1500);
+        };
+    </script>
+</body>
+
+</html>
