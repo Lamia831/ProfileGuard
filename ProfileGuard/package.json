@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "AI-Powered Social Media Safety Platform",
   "scripts": {
-    "start": "start http://localhost:5000/home.html && node backend/server.js"
+    "start": "node backend/server.js",
+    "postinstall": "cd backend && npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   }
 }
